@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" th:href="@{/css/carrito.css}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-content">
+            <div class="logo">Segurity<span>Connect</span></div>
+            <nav>
+                <a th:href="@{/inicio}">Inicio</a>
+                <a th:href="@{/catalogo}">Catálogo</a>
+                <a th:href="@{/carrito}">Carrito</a>
+                <a th:href="@{/logout}">Cerrar sesión</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Carrito -->
+    <main class="carrito-container">
+        <h2>Tu Carrito</h2>
+
+        <!-- Contenedor para listas / vacío -->
+        <div class="carrito-list">
+
+            <!-- Carrito vacío -->
+            <div th:if="${#lists.isEmpty(carrito)}" class="carrito-vacio">
+                <p>No tienes productos en el carrito.</p>
+                <a th:href="@{/catalogo}" class="btn-checkout">Ir al catálogo</a>
+            </div>
+
+            <!-- Carrito con productos -->
+            <div th:if="${!#lists.isEmpty(carrito)}" class="carrito-items-wrapper">
+
+                <div th:each="item : ${carrito}" class="carrito-item">
+
+                    <!-- Imagen -->
+                    <img th:src="@{${item.product.image}}" alt="Producto">
+
+                    <!-- Información -->
+                    <div class="carrito-info">
+                        <h3 th:text="${item.product.name}"></h3>
+                        
+                    </div>
+
+                    <!-- Precio -->
+                    <div class="carrito-price">
+                        $<span th:text="${item.product.price}"></span>
+                    </div>
+
+                    <!-- Cantidad -->
+                    <div class="carrito-cantidad">
+                        <!-- Restar -->
+                        <form th:action="@{/carrito/restar}" method="post" th:id="'restarForm_' + ${item.id}">
+                            <input type="hidden" name="cartId" th:value="${item.id}">
+                            <button type="submit" class="cantidad-btn">-</button>
+                        </form>
+
+                        <!-- Input visual (no envía form) -->
+                        <input class="cantidad-input" type="number" th:value="${item.cantidad}" disabled>
+
+                        <!-- Sumar -->
+                        <form th:action="@{/carrito/sumar}" method="post" th:id="'sumarForm_' + ${item.id}">
+                            <input type="hidden" name="cartId" th:value="${item.id}">
+                            <button type="submit" class="cantidad-btn">+</button>
+                        </form>
+                    </div>
+
+                    <!-- Botón eliminar -->
+                    <div class="carrito-actions">
+                        <form th:action="@{/carrito/eliminar}" method="post">
+                            <input type="hidden" name="cartId" th:value="${item.id}">
+                            <button type="submit" class="eliminar-btn">Eliminar</button>
+                        </form>
+                    </div>
+
+                </div> <!-- /each item -->
+
+                <!-- Total -->
+                <div class="total">
+                    Total: $<span th:text="${total}"></span>
+                </div>
+
+                <!-- Checkout -->
+                <div class="checkout-wrap" style="text-align: right;">
+                    <form th:action="@{/carrito/checkout}" method="get">
+                        <button type="submit" class="btn-checkout">Confirmar compra</button>
+                    </form>
+                </div>
+
+            </div> <!-- /carrito con productos -->
+
+        </div> <!-- /carrito-list -->
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SegurityConnect - Todos los derechos reservados</p>
+    </footer>
+
+</body>
+</html>

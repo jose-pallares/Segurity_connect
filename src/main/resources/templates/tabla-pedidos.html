@@ -1,0 +1,56 @@
+<div th:fragment="tabla">
+
+    <div th:if="${pedidos == null or pedidos.isEmpty()}">
+        <p class="text-muted text-center">No hay pedidos registrados.</p>
+    </div>
+
+    <div th:if="${pedidos != null and !pedidos.isEmpty()}">
+        <table class="table table-bordered table-striped">
+            <thead class="table-info">
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Usuario</th>
+                    <th>Contacto</th>
+                    <th>Dirección</th>
+                    <th>Fecha</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="pedido : ${pedidos}">
+                    <td th:text="${pedido.id}"></td>
+
+                    <td th:text="${pedido.user != null ? pedido.user.name : 'Usuario eliminado'}"></td>
+
+                    <td th:text="${pedido.contacto}"></td>
+                    <td th:text="${pedido.direccion}"></td>
+
+                    <td th:text="${pedido.fecha != null ?
+                                 #temporals.format(pedido.fecha,'yyyy-MM-dd HH:mm') :
+                                 'Fecha desconocida'}"></td>
+
+                    <td>
+                        <ul>
+                            <li th:each="item : ${pedido.items}">
+                                <span th:text="${item.product != null ? item.product.name : 'Producto eliminado'}"></span>
+                                -
+                                Cant: <span th:text="${item.cantidad}"></span>
+                                -
+                                $<span th:text="${item.precioUnitario}"></span>
+                                -
+                                Subtotal: $<span th:text="${item.cantidad * item.precioUnitario}"></span>
+                            </li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        $<span th:text="${pedido.total}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

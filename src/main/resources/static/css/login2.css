@@ -1,0 +1,214 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f3f3f3;
+  min-height: 100vh;
+}
+
+/* ===== Navbar ===== */
+.navbar-sc {
+  background: #111;
+  color: #fff;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.nav-content-sc {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-sc {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.logo-sc span {
+  color: #ff4c4c;
+}
+
+.btn-volver {
+  background: #ff4c4c;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: #fff;
+  color: #ff4c4c;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ===== Login Card ===== */
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 40px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 35px 30px 45px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  animation: fadeInUp 0.8s ease;
+}
+
+.login-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.login-card p.subtitle {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* ===== Input Groups ===== */
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #ff4c4c;
+  box-shadow: 0 0 8px rgba(255, 76, 76, 0.35);
+  outline: none;
+}
+
+/* ===== Button ===== */
+.btn-login {
+  width: 100%;
+  padding: 13px;
+  background: #ff4c4c;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s ease;
+}
+
+.btn-login:hover {
+  background: #111;
+  color: #ff4c4c;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* ===== Register link ===== */
+.register-text {
+  color: #333;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.register-text a {
+  color: #ff4c4c;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.register-text a:hover {
+  color: #111;
+}
+
+/* ===== Messages ===== */
+.success-message,
+.error-message,
+.logout-message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  background: #d4edda;
+  color: #155724;
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.logout-message {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+
+
+
+body {
+    margin: 0;
+    background: 
+        /* líneas diagonales finas */
+        repeating-linear-gradient(
+            135deg,
+            rgba(255,255,255,0.04) 0px,
+            rgba(255,255,255,0.04) 2px,
+            rgba(0,0,0,0.05) 3px,
+            rgba(0,0,0,0.05) 4px
+        ),
+        /* textura metálica */
+        linear-gradient(
+            135deg,
+            #2e2e2e,
+            #262626 40%,
+            #1f1f1f 60%,
+            #2a2a2a
+        );
+    background-size: cover;
+    color: white;
+    font-family: Arial, sans-serif;
+}

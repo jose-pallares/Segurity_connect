@@ -1,0 +1,160 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar actualizado */
+.navbar {
+    background: #111;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.nav-content {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px; 
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.logo span {
+    color: #ff4c4c;
+}
+
+
+.nav-content nav {
+    margin-left: auto; 
+}
+
+.nav-content nav a {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-content nav a:hover {
+    color: #ff4c4c;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.logo span {
+    color: #ff4c4c;
+}
+
+/* Card resumen */
+.summary-card {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Títulos */
+.title-success {
+    color: #111;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.subtitle {
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Tabla */
+.table-wrapper {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+}
+th {
+    background: #ff4c4c;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px 6px 0 0;
+}
+tbody tr {
+    background: #f7f7f7;
+    transition: background 0.3s ease;
+}
+tbody tr:nth-child(even) {
+    background: #fff;
+}
+tbody tr:hover {
+    background: #ffe5e5;
+}
+.product-name {
+    font-weight: 500;
+    color: #111;
+}
+.price, .quantity, .subtotal {
+    color: #333;
+}
+
+/* Total */
+.total {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* Botón CTA */
+.btn-cta {
+    display: inline-block;
+    background: #ff4c4c;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-cta:hover {
+    background: #111;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Nota adicional */
+.note {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Footer */
+footer {
+    background: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}

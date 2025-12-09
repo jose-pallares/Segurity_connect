@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD del Carrito</title>
+    <link rel="stylesheet" th:href="@{/css/carrito_crud.css}">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Gestión del Carrito</h1>
+
+    <!-- Mensaje si el carrito está vacío -->
+    <div th:if="${#lists.isEmpty(carrito)}">
+        <p>El carrito está vacío.</p>
+    </div>
+
+    <!-- Tabla solo si hay productos -->
+    <table th:if="${!#lists.isEmpty(carrito)}">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${carrito}">
+                <td th:text="${item.product != null ? item.product.name : 'Producto no encontrado'}">Nombre</td>
+                <td th:text="${item.product != null ? item.product.price : '0.0'}">Precio</td>
+                <td>
+                    <form th:action="@{/carrito/editar}" method="post">
+                        <input type="hidden" name="cartId" th:value="${item.id}" />
+                        <input type="number" name="cantidad" th:value="${item.cantidad}" min="1" required />
+                        <button type="submit">Actualizar</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/carrito/eliminar}" method="post">
+                        <input type="hidden" name="cartId" th:value="${item.id}" />
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <!-- Enlace para volver al catálogo de productos -->
+    <a th:href="@{/carrito}">← Volver al Catálogo</a>
+    
+    <form th:action="@{/carrito/confirmar}" method="post" th:if="${!#lists.isEmpty(carrito)}">
+    <button type="submit">Confirmar Compra</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h3.titulo {
+    color: #b30000;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #cc0000;
+    color: white;
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #0275d8;
+    border: none;
+}

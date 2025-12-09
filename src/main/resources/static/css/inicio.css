@@ -1,0 +1,973 @@
+/* ============================================================
+   RESET & BODY
+============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f4f4f4;
+    color: #111;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* ============================================================
+   TOPBAR
+============================================================ */
+.topbar {
+    background: #111;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.logo-accent {
+    color: #e50914;
+}
+
+.user-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.btn-top {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-top:hover {
+    background: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.rojo {
+    border-color: #e50914;
+    color: #e50914;
+}
+
+.rojo:hover {
+    background: #e50914;
+    color: #fff;
+}
+
+/* ============================================================
+   DASHBOARD SECTION
+============================================================ */
+.dashboard-section {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px 60px;
+}
+
+.dash-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* GRID PRINCIPAL */
+.dash-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+/* ============================================================
+   DASH CARDS
+============================================================ */
+.dash-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dash-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.dash-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #111;
+}
+
+/* PEDIDOS */
+.pedidos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pedido-item {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    border-left: 4px solid #e50914;
+    padding: 14px 18px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.pedido-item:hover {
+    background: #e50914;
+    color: #fff;
+    transform: translateX(3px);
+}
+
+.pedido-id,
+.pedido-fecha,
+.pedido-total {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* OFERTA DEL DÍA */
+.oferta-card {
+    background: #fff;
+    color: #111;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    border-left: 4px solid #e50914;
+}
+
+.oferta-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: #e50914;
+}
+
+.oferta-text {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.btn-oferta {
+    background: #e50914;
+    color: #fff !important;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+
+.btn-oferta:hover {
+    transform: scale(1.05);
+    background: #b00710;
+}
+
+
+
+/* ============================================================
+   CATEGORÍAS DESTACADAS
+============================================================ */
+.container-categorias {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.sec-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.sec-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #e50914;
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* TARJETAS CATEGORÍA */
+.categoria-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categoria-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+.card-media {
+    width: 100%;
+    height: 200px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-media img {
+    max-height: 80%;
+    transition: transform 0.3s ease;
+}
+
+.categoria-card:hover img {
+    transform: scale(1.08);
+}
+
+.card-title {
+    text-align: center;
+    padding: 12px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Ribbon */
+.ribbon {
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    background: #e50914;
+    color: #fff;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transform: rotate(-8deg);
+    border-radius: 6px;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+    background: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 60px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 900px) {
+    .dash-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* PANEL DESPLEGABLE MÁS ANCHO Y CÓMODO */
+.dashboard-panel {
+    position: fixed;
+    top: 0;
+    right: -600px; /* oculto por defecto */
+    width: 600px;  /* ANCHO NUEVO */
+    height: 100%;
+    background: #fff;
+    box-shadow: -4px 0 25px rgba(0,0,0,0.25);
+    transition: right 0.35s ease;
+    z-index: 1100;
+    padding: 30px; /* más espacio interior */
+    overflow-y: auto;
+    border-left: 1px solid #ddd;
+    border-radius: 0 0 0 15px;
+}
+
+.dashboard-panel.active {
+    right: 0;
+}
+
+/* CABECERA DEL PANEL */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-header h3 {
+    font-size: 1.7rem;
+    color: #111;
+}
+
+.dashboard-header span {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* TARJETA */
+.dashboard-content .dash-card {
+    background: #fafafa;
+    padding: 18px 22px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+
+/* LISTA DE PEDIDOS */
+.pedidos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ITEM DE PEDIDO */
+.pedido-item {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* PRODUCTO DENTRO DEL PEDIDO */
+.pedido-producto {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.pedido-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #f3f3f3;
+}
+
+.pedido-info {
+    flex: 1;
+}
+
+.prod-nombre {
+    font-weight: 600;
+    margin: 0;
+}
+
+.prod-detalles {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 2px 0 0 0;
+}
+
+.pedido-subtotal {
+    font-weight: bold;
+    color: #111;
+}
+
+/* FOOTER DEL PEDIDO */
+.pedido-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: #333;
+    margin-top: 5px;
+}
+
+.pedido-footer .total {
+    font-weight: bold;
+}
+
+
+/* HERO SECTION */
+.hero-section {
+    background: linear-gradient(135deg, #111, #e50914);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+    border-radius: 16px;
+    margin: 40px 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    animation: fadeInUp 1s ease forwards;
+}
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+.hero-section p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+.btn-cta {
+    background: #fff;
+    color: #e50914;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-cta:hover {
+    background: #f4f4f4;
+    transform: scale(1.05);
+}
+
+/* Animación */
+@keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+
+
+.pedido-card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.pedido-titulo {
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.pedido-item {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pedido-item:last-child {
+    border-bottom: none;
+}
+
+.pedido-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.pedido-info .prod-nombre {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pedido-info .prod-detalles {
+    font-size: 13px;
+    color: #555;
+}
+
+.pedido-subtotal {
+    font-weight: bold;
+    text-align: right;
+}
+
+.pedido-total-footer {
+    text-align: right;
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+
+/* ==============================
+   NUEVO DISEÑO DE PEDIDOS
+================================*/
+
+.pedido-bloque {
+    background: #fff;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    margin-bottom: 25px;
+}
+
+/* Encabezado (tipo tabla) */
+.pedido-encabezado {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.7fr 1fr;
+    padding: 10px 0;
+    font-weight: bold;
+    border-bottom: 2px solid #e50914;
+    color: #e50914;
+    margin-bottom: 10px;
+}
+
+/* Filas de productos */
+.pedido-fila {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.7fr 1fr;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pedido-fila:last-child {
+    border-bottom: none;
+}
+
+/* Imagen + nombre */
+.fila-producto {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pedido-img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fafafa;
+    border: 1px solid #ddd;
+}
+
+.prod-nombre {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.prod-precio {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Centro y derecha */
+.fila-fecha,
+.fila-cantidad,
+.fila-total {
+    font-size: 14px;
+}
+
+.fila-total {
+    font-weight: bold;
+}
+
+/* Total final del pedido */
+.pedido-total-final {
+    text-align: right;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 2px solid #ddd;
+    font-size: 15px;
+}
+
+
+
+/* ===========================================
+   PRODUCTOS MÁS VENDIDOS 
+=========================================== */
+
+/* Sección principal */
+.top-vendidos-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+    position: relative;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Título */
+.sec-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #e50914;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+.top-vendidos-section::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #e50914;
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+/* Carrusel horizontal */
+.top-vendidos-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Tarjetas estilo */
+.vendido-card {
+    min-width: 250px;
+    background: #1c1c1c; 
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    scroll-snap-align: center;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+}
+
+/* Overlay rojo */
+.vendido-card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(229,9,20,0);
+    border-radius: 12px;
+    transition: background 0.4s ease;
+    pointer-events: none;
+}
+
+.vendido-card:hover::after {
+    background: rgba(229,9,20,0.15);
+}
+
+/* Efecto hover de la tarjeta */
+.vendido-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+/* Imagen del producto */
+.vendido-img {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.vendido-img img {
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.vendido-card:hover .vendido-img {
+    transform: scale(1.07);
+    box-shadow: 0 10px 30px rgba(229,9,20,0.4);
+}
+
+/* Nombre y precio */
+.vendido-nombre {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #fff;
+}
+
+.vendido-precio {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e50914;
+    margin-bottom: 4px;
+}
+
+.vendido-ventas {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+/* Botón */
+.btn-vendido {
+    background: #e50914;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-vendido:hover {
+    background: #b20710;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(229,9,20,0.5);
+}
+
+/* Animación de entrada */
+.vendido-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s forwards;
+}
+
+.vendido-card:nth-child(1) { animation-delay: 0.1s; }
+.vendido-card:nth-child(2) { animation-delay: 0.2s; }
+.vendido-card:nth-child(3) { animation-delay: 0.3s; }
+.vendido-card:nth-child(4) { animation-delay: 0.4s; }
+.vendido-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Flechas de navegación */
+.top-vendidos-section .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(17,17,17,0.8);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.top-vendidos-section .carousel-btn:hover {
+    background: rgba(229,9,20,0.9);
+}
+
+.top-vendidos-section .carousel-btn.left { left: 5px; }
+.top-vendidos-section .carousel-btn.right { right: 5px; }
+
+
+
+/* ==============================
+   SECCIÓN BLOG - ESTILO MEJORADO
+================================= */
+.blog-section {
+    background: linear-gradient(180deg, #1a0000 0%, #000000 100%);
+    padding: 70px 20px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-title {
+    text-align: center;
+    font-size: 2.8rem; /* ligeramente más grande y elegante */
+    font-weight: 900;
+    color: #ff6666;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+    display: inline-block;
+    position: relative;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+/* Título más detallado con subtexto */
+.blog-title::after {
+    content: 'Consejos prácticos y curiosidades que te ayudarán a proteger tu hogar y negocio';
+    display: block;
+    font-size: 1rem;
+    color: #ffcccc;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Carrusel horizontal */
+.blog-carousel {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.blog-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.blog-carousel::-webkit-scrollbar-thumb {
+    background: #ff4d4d;
+    border-radius: 5px;
+}
+
+.blog-carousel::-webkit-scrollbar-track {
+    background: #2a0f0f;
+}
+
+/* Tarjetas de blog */
+.blog-card {
+    min-width: 320px;
+    max-width: 320px;
+    background: #800000; /* rojo oscuro más profundo */
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-12px) rotateZ(-1deg);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.55);
+}
+
+.blog-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-bottom: 3px solid #ff4d4d;
+}
+
+.blog-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-img img {
+    transform: scale(1.12) rotateZ(-1deg);
+}
+
+.blog-content {
+    padding: 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.blog-category {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ff9999;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.blog-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.4rem;
+    color: #fff;
+}
+
+/* Animación de entrada de las tarjetas */
+.blog-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUpBlog 0.6s forwards;
+}
+
+.blog-card:nth-child(1) { animation-delay: 0.1s; }
+.blog-card:nth-child(2) { animation-delay: 0.2s; }
+.blog-card:nth-child(3) { animation-delay: 0.3s; }
+.blog-card:nth-child(4) { animation-delay: 0.4s; }
+.blog-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeUpBlog {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Botones de carrusel */
+.blog-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 77, 77, 0.85);
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 1.9rem;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease, transform 0.3s ease;
+    color: #fff;
+}
+
+.blog-carousel-btn:hover {
+    background: #ff1a1a;
+    transform: scale(1.15);
+}
+
+.blog-carousel-btn.left { left: 20px; }
+.blog-carousel-btn.right { right: 20px; }
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .blog-card { min-width: 280px; max-width: 280px; }
+}
+
+@media (max-width: 900px) {
+    .blog-card { min-width: 240px; max-width: 240px; }
+    .blog-title { font-size: 2.2rem; }
+    .blog-title::after { font-size: 0.9rem; }
+    .blog-carousel-btn { width: 45px; height: 45px; font-size: 1.8rem; }
+}

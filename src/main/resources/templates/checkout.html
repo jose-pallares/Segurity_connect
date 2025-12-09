@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" th:href="@{/css/checkout.css}">
+    <style>
+        /* Campos de tarjeta ocultos inicialmente */
+        .tarjeta-fields {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-content">
+        <div class="logo">Segurity<span>Connect</span></div>
+        <nav>
+            <a th:href="@{/inicio}">Inicio</a>
+            <a th:href="@{/catalogo}">Catálogo</a>
+            <a th:href="@{/carrito}">Carrito</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="checkout-container">
+    <h2>Finalizar Compra</h2>
+
+    <!-- Vista previa del carrito -->
+    <table class="checkout-table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${carrito}">
+                <td th:text="${item.product.name}">Nombre</td>
+                <td th:text="${item.cantidad}">1</td>
+                <td>$<span th:text="${item.product.price}">0</span></td>
+                <td>$<span th:text="${item.product.price * item.cantidad}">0</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="total">Total: $<span th:text="${total}">0</span></p>
+
+    <!-- Formulario de checkout -->
+    <form th:action="@{/checkout/confirmar}" method="post" class="checkout-form">
+        <!-- Información del comprador -->
+        <label>Nombre completo:</label>
+        <input type="text" name="nombre" required placeholder="Juan Pérez">
+
+        <label>Teléfono:</label>
+        <input type="tel" name="telefono" required pattern="[0-9]{7,15}" placeholder="Ej: 3101234567">
+
+        <label>Contacto (email o referencia):</label>
+        <input type="text" name="contacto" required placeholder="correo@ejemplo.com">
+
+        <!-- Dirección -->
+        <label>Dirección:</label>
+        <input type="text" name="direccion" required placeholder="Calle 123 #45-67">
+
+        <!-- Método de pago -->
+        <label>Tipo de pago:</label>
+        <select name="tipo_pago" id="tipo_pago" required>
+            <option value="">Seleccione</option>
+            <option value="credito">Tarjeta de Crédito</option>
+            <option value="debito">Tarjeta de Débito</option>
+            <option value="efecty">Efectivo (Pago ContraEntrega)</option>
+        </select>
+
+        <div class="tarjeta-fields" id="tarjetaFields">
+            <label>Nombre del titular:</label>
+            <input type="text" name="titular" placeholder="Juan Pérez">
+
+            <label>Número de tarjeta:</label>
+            <input type="text" name="tarjeta" minlength="16" maxlength="16" placeholder="1234 5678 9012 3456">
+
+            <label>Fecha de expiración (MM/AA):</label>
+            <input type="text" name="expiracion" pattern="(0[1-9]|1[0-2])\/\d{2}" placeholder="MM/AA">
+
+            <label>CVV:</label>
+            <input type="text" name="cvv" pattern="\d{3,4}" placeholder="123">
+        </div>
+
+        <button type="submit" class="btn-checkout">Confirmar Pedido</button>
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2025 SegurityConnect - Todos los derechos reservados</p>
+</footer>
+
+<script>
+    // Mostrar/ocultar campos de tarjeta según el tipo de pago
+    const tipoPagoSelect = document.getElementById('tipo_pago');
+    const tarjetaFields = document.getElementById('tarjetaFields');
+
+    tipoPagoSelect.addEventListener('change', () => {
+        if (tipoPagoSelect.value === 'credito' || tipoPagoSelect.value === 'debito') {
+            tarjetaFields.style.display = 'flex';
+        } else {
+            tarjetaFields.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>

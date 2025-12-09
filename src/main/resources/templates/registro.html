@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" th:href="@{/css/registro.css}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar-sc">
+    <div class="nav-content-sc">
+        <span class="logo-sc">Segurity<span>Connect</span></span>
+
+        <a th:href="@{/principal}" class="btn-volver">Volver a Principal</a>
+    </div>
+</nav>
+
+<!-- CONTENEDOR -->
+<div class="register-wrapper">
+    <div class="register-box">
+
+        <h2>Registro de Usuario</h2>
+        <p class="subtitle">Crea tu cuenta para comenzar</p>
+
+        <form th:action="@{/registro}" method="post">
+
+            <div class="input-group">
+                <label>Nombre Completo:</label>
+                <input type="text" name="nombre" required>
+            </div>
+
+            <div class="input-group">
+                <label>Correo Electrónico:</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Contraseña:</label>
+                <input type="password" name="password" required minlength="8">
+            </div>
+
+            <div class="input-group">
+                <label>Confirmar Contraseña:</label>
+                <input type="password" name="confirmar" required minlength="8">
+            </div>
+
+            <button type="submit" class="btn-register">Registrarse</button>
+        </form>
+
+        <p class="login-text">
+            ¿Ya tienes cuenta?
+            <a th:href="@{/login}">Inicia sesión</a>
+        </p>
+
+        <!-- Mensajes dinámicos -->
+        <div th:if="${error}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+
+        <div th:if="${mensaje}" class="success-message">
+            <p th:text="${mensaje}"></p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

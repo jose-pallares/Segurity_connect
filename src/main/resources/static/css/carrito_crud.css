@@ -1,0 +1,146 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background: #f9f9f9;
+  padding: 20px;
+}
+
+/* ===== Título ===== */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+  color: #e63946;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* ===== Mensaje vacío ===== */
+div[th\\:if] p {
+  text-align: center;
+  padding: 20px;
+  background: #fff3f3;
+  color: #c0392b;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  font-weight: bold;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* ===== Tabla ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  animation: fadeInUp 1s ease-out;
+}
+
+thead {
+  background: #e63946;
+  color: #fff;
+}
+
+thead th {
+  padding: 14px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s ease;
+}
+tbody tr:hover {
+  background: #f7f7f7;
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* ===== Formularios de acciones ===== */
+form {
+  display: inline-block;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* ===== Botones ===== */
+button {
+  background: #e63946;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-left: 5px;
+}
+
+button:hover {
+  background: #fff;
+  color: #e63946;
+  border: 1px solid #e63946;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Botón confirmar */
+form[action*="confirmar"] button {
+  display: block;
+  margin: 30px auto;
+  font-size: 1rem;
+  padding: 12px 24px;
+  background: #2a9d8f;
+}
+form[action*="confirmar"] button:hover {
+  background: #fff;
+  color: #2a9d8f;
+  border: 1px solid #2a9d8f;
+}
+
+/* ===== Enlace volver ===== */
+a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #e63946;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #111;
+  text-decoration: underline;
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeInDown {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+

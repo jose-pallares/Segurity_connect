@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Compra Exitosa</title>
+    <link rel="stylesheet" th:href="@{/css/compra_exitosa.css}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">Segurity<span>Connect</span></div>
+            <nav>
+             
+            </nav>
+        </div>
+    </header>
+
+    <div class="container summary-card">
+        <h1 class="title-success">¡Compra realizada con éxito!</h1>
+        <p class="subtitle">Gracias por su compra. A continuación, encontrará un resumen de los productos adquiridos:</p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${items}">
+                        <td class="product-name" th:text="${item.product.name}">Nombre</td>
+                        <td class="price" th:text="${item.precioUnitario}">Precio</td>
+                        <td class="quantity" th:text="${item.cantidad}">Cantidad</td>
+                        <td class="subtotal" th:text="${item.precioUnitario * item.cantidad}">Subtotal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="total">
+            Total: <span th:text="${#numbers.formatDecimal(total, 1, 'POINT', 2, 'NONE')}"></span>
+        </p>
+
+        <a th:href="@{/catalogo}" class="btn-cta">Volver al catálogo</a>
+        <p class="note">Recibirá un correo con los detalles de su pedido y el número de seguimiento.</p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SegurityConnect - Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>

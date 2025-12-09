@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Invitado</title>
+    <link rel="stylesheet" th:href="@{/css/catalogo.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-content">
+        <div class="logo">Segurity<span>Connect</span></div>
+        <nav>
+            <a th:href="@{/invitado/inicio}">Inicio</a>
+            <a th:href="@{/login}">Iniciar sesión</a>
+            <a th:href="@{/principal}">Volver a Principal</a>
+            <a th:href="@{/invitado/carrito}">Carrito</a>
+        </nav>
+    </div>
+</header>
+
+<main class="catalog-container">
+    <h2>Catálogo de Productos (Invitado)</h2>
+
+    <!-- Filtros -->
+    <form class="filter-form" method="get" th:action="@{/invitado/catalogo}">
+
+        <input type="text"
+               name="nombre"
+               placeholder="Buscar por nombre..."
+               th:value="${nombre}"/>
+
+        <!-- Categorías -->
+        <select name="categoryId" id="categorySelect">
+            <option value="" th:selected="${categoryId == null}">
+                Todas las categorías
+            </option>
+
+            <option th:each="cat : ${categorias}"
+                    th:value="${cat.id}"
+                    th:text="${cat.name}"
+                    th:selected="${categoryId != null and categoryId == cat.id}">
+            </option>
+        </select>
+
+        <!-- Subcategorías -->
+        <select name="subcategoryId" id="subcategorySelect">
+            <option value="" th:selected="${subcategoryId == null}">
+                Todas las subcategorías
+            </option>
+
+            <option th:if="${subcategorias != null}"
+                    th:each="sub : ${subcategorias}"
+                    th:value="${sub.id}"
+                    th:text="${sub.name}"
+                    th:selected="${subcategoryId != null and subcategoryId == sub.id}">
+            </option>
+        </select>
+
+        <button type="submit" class="btn-search">Buscar</button>
+    </form>
+
+    <!-- Grid de productos -->
+    <div class="grid">
+        <div class="card" th:each="producto : ${productos}">
+
+            <!-- Imagen -->
+            <a th:href="@{'/invitado/producto/' + ${producto.id}}">
+                <img th:src="@{${producto.image}}" alt="Imagen producto">
+            </a>
+
+            <!-- Nombre -->
+            <a th:href="@{'/invitado/producto/' + ${producto.id}}">
+                <h3 th:text="${producto.name}"></h3>
+            </a>
+
+            <p class="price">
+                $<span th:text="${producto.price}"></span>
+            </p>
+
+            <p class="category">
+                Categoría:
+                <span th:text="${producto.categoryName != null ? producto.categoryName : 'Sin categoría'}"></span>
+            </p>
+
+            <p class="category" th:if="${producto.subcategoryName != null}">
+                Subcategoría:
+                <span th:text="${producto.subcategoryName}"></span>
+            </p>
+
+            <!-- Botón carrito -->
+            <a th:href="@{'/invitado/carrito/agregar/' + ${producto.id}}"
+               class="btn-add">
+                Agregar al carrito
+            </a>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 SegurityConnect - Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>

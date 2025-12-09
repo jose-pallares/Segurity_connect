@@ -1,0 +1,45 @@
+<div th:if="${pedidos.isEmpty()}">
+    <p class="text-muted text-center">No hay pedidos registrados.</p>
+</div>
+
+<div th:if="${!pedidos.isEmpty()}">
+    <table class="table table-bordered table-striped">
+        <thead class="table-info">
+            <tr>
+                <th>ID Pedido</th>
+                <th>Usuario</th>
+                <th>Contacto</th>
+                <th>Dirección</th>
+                <th>Fecha</th>
+                <th>Items</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="pedido : ${pedidos}">
+                <td th:text="${pedido.id}"></td>
+                <td th:text="${pedido.user.name}"></td>
+                <td th:text="${pedido.contacto}"></td>
+                <td th:text="${pedido.direccion}"></td>
+                <td th:text="${#temporals.format(pedido.fecha, 'yyyy-MM-dd HH:mm')}"></td>
+
+                <td>
+                    <ul>
+                        <li th:each="item : ${pedido.items}">
+                            <span th:text="${item.product.name}"></span> -
+                            Cant: <span th:text="${item.cantidad}"></span> -
+                            $<span th:text="${item.precioUnitario}"></span> -
+                            Subtotal: $<span th:text="${item.getSubtotal()}"></span>
+                        </li>
+                    </ul>
+                </td>
+
+                <td>
+                    $<span th:text="${#numbers.formatDecimal(
+                        pedido.items.stream().mapToDouble(i -> i.getSubtotal()).sum(), 2, 'POINT')}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

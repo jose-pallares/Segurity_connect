@@ -1,0 +1,170 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  background: #111;
+  color: #fff;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.nav-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+nav {
+  margin-left: auto;
+}
+nav a {
+  color: #fff;
+  margin-left: 12px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #ff4c4c;
+}
+
+/* Contenedor principal */
+.checkout-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+.checkout-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 30px;
+}
+
+/* Tabla del carrito */
+.checkout-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.checkout-table th,
+.checkout-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.checkout-table th {
+  background: #ff4c4c;
+  color: #fff;
+  font-weight: 600;
+}
+.checkout-table tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+/* Total */
+.total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: right;
+  margin-bottom: 25px;
+}
+
+/* Formulario */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.checkout-form label {
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 5px;
+}
+.checkout-form input,
+.checkout-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+.checkout-form input:focus,
+.checkout-form select:focus {
+  border-color: #ff4c4c;
+  outline: none;
+}
+
+/* Payment method */
+.payment-method {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.payment-method legend {
+  font-weight: bold;
+  color: #ff4c4c;
+}
+
+/* Botón */
+.btn-checkout {
+  background: #ff4c4c;
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  align-self: flex-end;
+  transition: all 0.3s ease;
+}
+.btn-checkout:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background: #111;
+  color: #aaa;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: 20px;
+  }
+  .checkout-table th,
+  .checkout-table td {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}

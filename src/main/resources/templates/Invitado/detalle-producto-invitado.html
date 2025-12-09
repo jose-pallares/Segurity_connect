@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${producto.name}">Detalle del Producto</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/detalle-producto.css}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-content">
+        <div class="logo">Segurity<span>Connect</span></div>
+        <nav>
+            <a th:href="@{/invitado/inicio}">Inicio</a>
+            <a th:href="@{/invitado/catalogo}">Catálogo</a>
+            <a th:href="@{/invitado/carrito}">Carrito</a>
+            <a th:href="@{/login}">Iniciar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<a class="back" th:href="@{/invitado/catalogo}">← Volver al catálogo</a>
+
+<div class="detalle-container">
+
+    <!-- ENVOLTORIO PARA QUE LA IMAGEN NO ROMPA EL DISEÑO -->
+    <div class="img-wrapper">
+        <img th:src="@{${producto.image}}" alt="Imagen del producto">
+    </div>
+
+    <div class="info">
+
+        <h2 th:text="${producto.name}"></h2>
+
+        <p class="precio">
+            $<span th:text="${producto.price}"></span>
+        </p>
+
+        <p>
+            Categoría:
+            <strong th:text="${producto.categoryName}"></strong>
+        </p>
+
+        <!-- DESCRIPCIÓN QUE ACEPTA HTML Y NO ROMPE EL DISEÑO -->
+        <div class="descripcion" th:utext="${producto.description}"></div>
+
+        <!-- BOTÓN INVITADO -->
+        <a th:href="@{'/invitado/carrito/agregar/' + ${producto.id}}" 
+           class="btn-add">
+            Agregar al carrito
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

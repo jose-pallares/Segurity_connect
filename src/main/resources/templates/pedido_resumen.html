@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Resumen del Pedido</title>
+</head>
+<body>
+  <h1>Pedido confirmado</h1>
+
+  <p>Gracias por tu compra, <span th:text="${pedido.contacto}"></span>.</p>
+  <p>Tu pedido se enviará a: <span th:text="${pedido.direccion}"></span></p>
+  <p>Fecha: <span th:text="${pedido.fecha}"></span></p>
+
+  <h2>Detalles</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="item : ${items}">
+        <td th:text="${item.product.name}"></td>
+        <td th:text="${item.cantidad}"></td>
+        <td th:text="${item.precioUnitario}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
+

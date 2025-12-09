@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SegurityConnect - Inicio</title>
+    <link rel="stylesheet" href="/css/inicio.css">
+</head>
+
+<body>
+
+<!-- BARRA SUPERIOR -->
+<header class="topbar">
+    <div class="logo">
+        <span class="logo-bold">Segurity</span><span class="logo-accent">Connect</span>
+    </div>
+
+    <div class="user-actions">
+        <a th:href="@{/carrito}" class="btn-top same-size">Carrito</a>
+
+        <a th:if="${usuario != null and usuario.role == 'admin'}"
+           th:href="@{/users}"
+           class="btn-top same-size">Administración</a>
+
+        <form th:if="${usuario != null}" th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn-top logout-btn same-size">Cerrar sesión</button>
+        </form>
+
+        <a th:unless="${usuario != null}" th:href="@{/login}" class="btn-top rojo same-size">Iniciar sesión</a>
+
+        <button th:if="${usuario != null}" id="openDashboard" class="btn-top same-size">¡Ultimas compras!</button>
+    </div>
+</header>
+
+<!-- PANEL DESPLEGABLE -->
+<div class="dashboard-panel" id="dashboardPanel" th:if="${usuario != null}">
+
+    <div class="dashboard-header">
+        <h3>Tus pedidos</h3>
+        <span id="closeDashboard">&times;</span>
+    </div>
+
+    <div class="dashboard-content">
+
+        <!-- ULTIMOS PEDIDOS -->
+        <div class="dash-card pedidos-card">
+
+            <h4> Últimos pedidos</h4>
+
+            <div th:if="${#lists.isEmpty(pedidos)}" class="no-pedidos">
+                No has realizado ningún pedido aún.
+            </div>
+
+            <div class="pedidos-list" th:if="${!#lists.isEmpty(pedidos)}">
+                <div class="pedido-bloque" th:each="p : ${pedidos}">
+
+                    <!-- Encabezado -->
+                    <div class="pedido-encabezado">
+                        <span>Producto</span>
+                        <span>Fecha</span>
+                        <span>Cant.</span>
+                        <span>Total</span>
+                    </div>
+
+                    <!-- Filas -->
+                    <div class="pedido-fila" th:each="item : ${p.items}">
+                        <div class="fila-producto">
+                            <img class="pedido-img" th:src="@{${item.product.image}}" alt="producto">
+
+                            <div>
+                                <p class="prod-nombre" th:text="${item.product.name}"></p>
+                                <p class="prod-precio">$<span th:text="${item.precioUnitario}"></span> c/u</p>
+                            </div>
+                        </div>
+
+                        <div class="fila-fecha"
+                             th:text="${#temporals.format(p.fecha,'dd/MM/yyyy HH:mm')}"></div>
+
+                        <div class="fila-cantidad" th:text="${item.cantidad}"></div>
+
+                        <div class="fila-total">
+                            $<span th:text="${item.subtotal}"></span>
+                        </div>
+                    </div>
+
+                    <!-- Total final -->
+                    <div class="pedido-total-final">
+                        Total del pedido:
+                        <strong>$<span th:text="${p.total}"></span></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OFERTA DEL DÍA -->
+        <!-- <div class="dash-card oferta-card">
+            <h4>🔥 Oferta del día</h4>
+            <p class="oferta-text">10% de descuento en Extintores*</p>
+            <a href="/catalogo?categoryId=2" class="btn-oferta">Ver extintores</a>
+        </div> -->
+
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Protege lo que más importa</h1>
+        <p>SegurityConnect te ofrece extintores, botiquines y señalizaciones para mantener tu hogar y negocio seguros.</p>
+        <a href="/catalogo" class="btn-cta">Ver catálogo completo</a>
+    </div>
+</section>
+
+<!-- PRODUCTOS MÁS VENDIDOS -->
+<section class="top-vendidos-section">
+    <h3 class="sec-title">🔥 Productos más vendidos</h3>
+
+    <button class="carousel-btn left">&#8249;</button>
+    <button class="carousel-btn right">&#8250;</button>
+
+    <div class="top-vendidos-grid" id="topVendidosGrid">
+        <div class="vendido-card" th:each="p : ${topVendidos}">
+            <div class="vendido-img">
+                <img th:src="@{${p.image}}" alt="Producto">
+            </div>
+
+            <h4 class="vendido-nombre" th:text="${p.name}"></h4>
+
+            <p class="vendido-precio">
+                $<span th:text="${p.price}"></span>
+            </p>
+
+            <p class="vendido-ventas">
+                Vendidos: <span th:text="${p.cantidadVendida}"></span>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section">
+    <h2 class="blog-title">💡 Consejos y curiosidades sobre seguridad en tu hogar y negocio</h2>
+
+    <button class="blog-carousel-btn left">&#8249;</button>
+    <button class="blog-carousel-btn right">&#8250;</button>
+
+    <div class="blog-carousel" id="blogCarousel">
+
+        <div class="blog-card blog-card-large">
+            <div class="blog-img">
+                <img src="/img/blog1.png" alt="Seguridad en establecimientos">
+            </div>
+            <div class="blog-content">
+                <p class="blog-category">Dato Curioso</p>
+                <h3 class="blog-heading">
+                    ¿Sabías que más del 30% de los establecimientos son cerrados por no tener los productos obligatorios de seguridad?
+                </h3>
+            </div>
+        </div>
+
+        <div class="blog-card blog-card-small">
+            <div class="blog-img">
+                <img src="/img/blog2.png" alt="Incendios controlables">
+            </div>
+            <div class="blog-content">
+                <p class="blog-category">Tip de Seguridad</p>
+                <h3 class="blog-heading">
+                    La mayoría de los incendios en hogares se pueden controlar con un extintor correctamente ubicado y revisado.
+                </h3>
+            </div>
+        </div>
+
+        <div class="blog-card blog-card-large">
+            <div class="blog-img">
+                <img src="/img/blog3.png" alt="Botiquines en casa">
+            </div>
+            <div class="blog-content">
+                <p class="blog-category">Salud y Vida</p>
+                <h3 class="blog-heading">
+                    Los botiquines en casa pueden salvar más vidas que muchos dispositivos tecnológicos modernos.
+                </h3>
+            </div>
+        </div>
+
+        <div class="blog-card blog-card-small">
+            <div class="blog-img">
+                <img src="/img/blog4.png" alt="Señalización correcta">
+            </div>
+            <div class="blog-content">
+                <p class="blog-category">Tip Profesional</p>
+                <h3 class="blog-heading">
+                    Una señalización adecuada reduce hasta un 50% los accidentes laborales en locales comerciales.
+                </h3>
+            </div>
+        </div>
+
+        <div class="blog-card blog-card-large">
+            <div class="blog-img">
+                <img src="/img/blog5.png" alt="Revisiones periódicas">
+            </div>
+            <div class="blog-content">
+                <p class="blog-category">Consejo Útil</p>
+                <h3 class="blog-heading">
+                    Revisar periódicamente extintores y botiquines asegura su efectividad en emergencias.
+                </h3>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CATEGORIAS -->
+<section id="categorias-destacadas" class="container-categorias">
+    <h3 class="sec-title">Categorías destacadas</h3>
+
+    <div class="grid-categorias">
+
+        <a th:href="@{/catalogo(categoryId=2)}" class="categoria-card">
+            <div class="ribbon">Popular</div>
+            <div class="card-media">
+                <img src="/img/extintor_auto.png" alt="Extintores">
+            </div>
+            <div class="card-title">Extintores</div>
+        </a>
+
+        <a th:href="@{/catalogo(categoryId=1)}" class="categoria-card">
+            <div class="ribbon">Top</div>
+            <div class="card-media">
+                <img src="/img/botiquin_locales.png" alt="Botiquines">
+            </div>
+            <div class="card-title">Botiquines</div>
+        </a>
+
+        <a th:href="@{/catalogo(categoryId=3)}" class="categoria-card">
+            <div class="ribbon">Nuevo</div>
+            <div class="card-media">
+                <img src="/img/Señal_PisoResbaloso.png" alt="Señales">
+            </div>
+            <div class="card-title">Señalizaciones</div>
+        </a>
+
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 SegurityConnect - Todos los derechos reservados</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+    // Panel desplegable
+    const openBtn = document.getElementById('openDashboard');
+    const closeBtn = document.getElementById('closeDashboard');
+    const panel = document.getElementById('dashboardPanel');
+
+    if (openBtn && closeBtn && panel) {
+        openBtn.addEventListener('click', () => panel.classList.add('active'));
+        closeBtn.addEventListener('click', () => panel.classList.remove('active'));
+    }
+
+    // Carrusel productos
+    const leftBtn = document.querySelector('.carousel-btn.left');
+    const rightBtn = document.querySelector('.carousel-btn.right');
+    const grid = document.getElementById('topVendidosGrid');
+
+    if (leftBtn && rightBtn && grid) {
+        leftBtn.addEventListener('click', () => grid.scrollBy({ left: -300, behavior: 'smooth' }));
+        rightBtn.addEventListener('click', () => grid.scrollBy({ left: 300, behavior: 'smooth' }));
+    }
+
+    // Carrusel blog
+    const blogLeftBtn = document.querySelector('.blog-carousel-btn.left');
+    const blogRightBtn = document.querySelector('.blog-carousel-btn.right');
+    const blogGrid = document.getElementById('blogCarousel');
+
+    if (blogLeftBtn && blogRightBtn && blogGrid) {
+        blogLeftBtn.addEventListener('click', () => blogGrid.scrollBy({ left: -400, behavior: 'smooth' }));
+        blogRightBtn.addEventListener('click', () => blogGrid.scrollBy({ left: 400, behavior: 'smooth' }));
+    }
+</script>
+
+</body>
+</html>

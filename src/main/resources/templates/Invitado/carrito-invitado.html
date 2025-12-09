@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito Invitado</title>
+    <link rel="stylesheet" th:href="@{/css/carrito.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="nav-content">
+        <div class="logo">Segurity<span>Connect</span></div>
+        <nav>
+            <a th:href="@{/invitado/inicio}">Inicio</a>
+            <a th:href="@{/invitado/catalogo}">Catálogo</a>
+            <a th:href="@{/invitado/carrito}">Carrito</a>
+            <a th:href="@{/login}">Iniciar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Carrito -->
+<main class="carrito-container">
+    <h2>Tu Carrito (Invitado)</h2>
+
+    <div class="carrito-list">
+
+        <!-- Carrito vacío -->
+        <div th:if="${#lists.isEmpty(carrito)}" class="carrito-vacio">
+            <p>No tienes productos en tu carrito.</p>
+            <a th:href="@{/invitado/catalogo}" class="btn-checkout">Ir al catálogo</a>
+        </div>
+
+        <!-- Carrito con productos -->
+        <div th:if="${!#lists.isEmpty(carrito)}" class="carrito-items-wrapper">
+
+            <div th:each="item : ${carrito}" class="carrito-item">
+
+                <!-- Imagen -->
+                <img th:src="@{${item.product.image}}" alt="Producto">
+
+                <!-- Información -->
+                <div class="carrito-info">
+                    <h3 th:text="${item.product.name}"></h3>
+                </div>
+
+                <!-- Precio -->
+                <div class="carrito-price">
+                    $<span th:text="${item.product.price}"></span>
+                </div>
+
+                <!-- Cantidad -->
+                <div class="carrito-cantidad">
+
+                    <!-- Restar -->
+                    <form th:action="@{/invitado/carrito/restar}" method="post">
+                        <input type="hidden" name="productId" th:value="${item.product.id}">
+                        <button type="submit" class="cantidad-btn">-</button>
+                    </form>
+
+                    <input class="cantidad-input" type="number" th:value="${item.cantidad}" disabled>
+
+                    <!-- Sumar -->
+                    <form th:action="@{/invitado/carrito/sumar}" method="post">
+                        <input type="hidden" name="productId" th:value="${item.product.id}">
+                        <button type="submit" class="cantidad-btn">+</button>
+                    </form>
+
+                </div>
+
+                <!-- Eliminar -->
+                <div class="carrito-actions">
+                    <form th:action="@{/invitado/carrito/eliminar}" method="post">
+                        <input type="hidden" name="productId" th:value="${item.product.id}">
+                        <button type="submit" class="eliminar-btn">Eliminar</button>
+                    </form>
+                </div>
+
+            </div> <!-- /each item -->
+
+            <!-- Total -->
+            <div class="total">
+                Total: $<span th:text="${total}"></span>
+            </div>
+
+            <!-- Checkout invitado -> redirigir a login -->
+            <div class="checkout-wrap" style="text-align: right;">
+                <a th:href="@{/login}" class="btn-checkout">Iniciar sesión para comprar</a>
+            </div>
+
+        </div> <!-- /carrito con productos -->
+
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 SegurityConnect - Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>

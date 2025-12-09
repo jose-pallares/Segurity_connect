@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Enviar correos</title>
+    <link rel="stylesheet" th:href="@{/css/admin-email.css}">
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        <div class="email-card">
+
+            <h2 class="title">Envío de correos</h2>
+
+            <!-- Mensajes -->
+            <div th:if="${success}" class="alert alert-success">
+                <p th:text="${success}"></p>
+            </div>
+
+            <div th:if="${error}" class="alert alert-error">
+                <p th:text="${error}"></p>
+            </div>
+
+            <!-- FORMULARIO -->
+            <form action="/admin/email/send" method="post" class="email-form">
+
+                <div class="form-group">
+                    <label for="destinatarios">Destinatarios (separados por coma):</label>
+                    <input type="text" id="destinatarios" name="destinatarios"
+                        placeholder="correo1@gmail.com, correo2@yahoo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="asunto">
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="8"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar correo</button>
+
+            </form>
+
+            <!-- BOTÓN DE RETORNO -->
+            <div class="btn-back-container">
+                <a href="/admin-panel" class="btn-back">⬅ Volver al Panel</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    <link rel="stylesheet" th:href="@{/css/catalogo.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="nav-content">
+        <div class="logo">Segurity<span>Connect</span></div>
+        <nav>
+            <a th:href="@{/inicio}">Inicio</a>
+            <a th:href="@{/catalogo}">Catálogo</a>
+            <a th:href="@{/carrito}">Carrito</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="catalog-container">
+    <h2>Catálogo de Productos</h2>
+
+    <!-- Formulario de filtros -->
+    <form class="filter-form" method="get" th:action="@{/catalogo}">
+        <input type="text" name="nombre" placeholder="Buscar por nombre..." th:value="${nombre}">
+
+        <!-- Categorías -->
+        <select name="categoryId" id="categorySelect">
+            <option value="" th:selected="${categoryId == null}">Todas las categorías</option>
+            <option th:each="cat : ${categorias}"
+                    th:value="${cat.id}"
+                    th:text="${cat.name}"
+                    th:selected="${categoryId != null and categoryId == cat.id}">
+            </option>
+        </select>
+
+        <!-- Subcategorías -->
+        <select name="subcategoryId" id="subcategorySelect" th:if="${subcategorias != null}">
+            <option value="" th:selected="${subcategoryId == null}">Todas las subcategorías</option>
+            <option th:each="sub : ${subcategorias}"
+                    th:value="${sub.id}"
+                    th:text="${sub.name}"
+                    th:selected="${subcategoryId != null and subcategoryId == sub.id}">
+            </option>
+        </select>
+
+        <button type="submit" class="btn-search">Buscar</button>
+    </form>
+
+    <!-- GRID DE PRODUCTOS -->
+    <div class="grid">
+        <div class="card" th:each="producto : ${productos}">
+
+            <!-- Enlace correcto al detalle del usuario -->
+            <a th:href="@{'/catalogo/producto/' + ${producto.id}}">
+                <img th:src="@{${producto.image}}" alt="Imagen producto">
+            </a>
+
+            <a th:href="@{'/catalogo/producto/' + ${producto.id}}">
+                <h3 th:text="${producto.name}"></h3>
+            </a>
+
+            <p class="price">
+                $<span th:text="${producto.price}"></span>
+            </p>
+
+            <p class="category">
+                Categoría:
+                <span th:text="${producto.categoryName != null ? producto.categoryName : 'Sin categoría'}"></span>
+            </p>
+
+            <p class="category" th:if="${producto.subcategoryName != null}">
+                Subcategoría:
+                <span th:text="${producto.subcategoryName}"></span>
+            </p>
+
+            <!-- Botón para añadir al carrito -->
+            <form th:action="@{/carrito/agregar}" method="post">
+                <input type="hidden" name="productId" th:value="${producto.id}">
+                <button type="submit" class="btn-add">Agregar al carrito</button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- PAGINACIÓN -->
+    <div class="paginacion">
+        <a th:if="${page > 0}"
+           th:href="@{/catalogo(page=${page - 1}, nombre=${nombre}, categoryId=${categoryId}, subcategoryId=${subcategoryId})}"
+           class="btn-page">Anterior</a>
+
+        <span>Página [[${page + 1}]] de [[${totalPaginas}]]</span>
+
+        <a th:if="${page + 1 < totalPaginas}"
+           th:href="@{/catalogo(page=${page + 1}, nombre=${nombre}, categoryId=${categoryId}, subcategoryId=${subcategoryId})}"
+           class="btn-page">Siguiente</a>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 SegurityConnect - Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f6f7f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #0f0f0f;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.logo span {
+  color: #e63946;
+}
+
+.navbar nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 14px;
+  font-weight: 500;
+  transition: 0.25s ease;
+}
+
+.navbar nav a:hover {
+  color: #e63946;
+}
+
+/* ===== BOTÓN VOLVER ===== */
+.back {
+  display: inline-block;
+  margin: 25px 45px;
+  color: #111;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.back:hover {
+  color: #e63946;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.detalle-container {
+  max-width: 1250px;
+  margin: 20px auto 60px;
+  padding: 40px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid #e6e9ec;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  animation: fadeIn 0.5s ease;
+}
+
+/* ===== IMAGEN ===== */
+.detalle-container img {
+  width: 100%;
+  height: 420px;
+  object-fit: contain;
+  background: #fafafa;
+  border-radius: 14px;
+  padding: 20px;
+  mix-blend-mode: multiply;
+}
+
+/* ===== INFO DEL PRODUCTO ===== */
+.info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.info h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #e63946;
+  margin: 20px 0;
+}
+
+/* IMPORTANTE: Evita que el botón se suba */
+.descripcion {
+  margin-top: 25px;
+  line-height: 1.8;
+  color: #444;
+  font-size: 1.05rem;
+  flex-grow: 1;
+}
+
+/* Espaciado entre párrafos */
+.descripcion p {
+  margin-bottom: 18px;
+}
+
+/* Subtítulo */
+.descripcion h3 {
+  font-size: 1.3rem;
+  margin: 22px 0 12px;
+  color: #111;
+  font-weight: 700;
+}
+
+/* Listas */
+.descripcion ul {
+  padding-left: 22px;
+  margin-bottom: 25px;
+}
+
+.descripcion li {
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 1.03rem;
+}
+
+.descripcion li::marker {
+  color: #e63946;
+  font-size: 1.1rem;
+}
+
+/* ===== BOTÓN AÑADIR CARRITO ===== */
+.btn-add {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  text-align: center; /* ← Asegura que el texto esté centrado */
+  display: block;     /* ← Evita que se descuadre en invitado */
+}
+
+.btn-add:hover {
+  background: #e63946;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .detalle-container {
+    grid-template-columns: 1fr;
+    padding: 25px;
+  }
+
+  .detalle-container img {
+    height: 350px;
+  }
+
+  .back {
+    margin-left: 20px;
+  }
+}
+
+/* ===== Animación ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
